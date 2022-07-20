@@ -6,7 +6,7 @@
 
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
-from scikit-image import io
+from skimage import io
 from tensorflow.keras.models import load_model
 import cv2
 from PIL import Image #use PIL
@@ -41,16 +41,3 @@ def upload_file():
 
 if __name__ == "__main__":
     app.run()
-
-
-# In[10]:
-
-
-model
-
-
-# In[ ]:
-
-
-
-
