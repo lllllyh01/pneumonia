@@ -19,7 +19,6 @@ importlib-metadata==4.10.1
 itsdangerous==2.0.1
 Jinja2==3.0.3
 joblib==1.1.0
-keras==2.8.0
 Keras-Preprocessing==1.1.2
 libclang==13.0.0
 Markdown==3.3.6
@@ -51,4 +50,3 @@ urllib3==1.26.8
 Werkzeug==2.0.3
 wrapt==1.13.3
 zipp==3.7.0
-tensorflow-cpu
