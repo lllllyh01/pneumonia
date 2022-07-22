@@ -1,21 +1,32 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[3]:
+
+
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
-from keras.models import load_model
+from tensorflow.keras.models import load_model
+# import cv2
 from PIL import Image #use PIL
 import numpy as np
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
-def init():
+def upload_file():
     if request.method == 'POST':
         file = request.files['file']
-        print("File Received")
+        # print("File Received")
         filename = secure_filename(file.filename)
-        print(filename)
-        # Open the image form working directory
-        image = Image.open(file)
-        model = load_model("Pneumonia")
+#         print(filename)
+#         file.save("./static/"+filename) #Heroku no need static
+#         file = open("./static/"+filename,"r") #Heroku no need static
+        model = load_model("pneumonia")
+#         image = cv2.imread("./static/"+filename)
+#         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+#         img = cv2.merge([gray,gray,gray])
+        img  Image.open(file)
         img = np.asarray(image)
         img.resize((150,150,3))
         img = np.asarray(img, dtype="float32") #need to transfer to np to reshape
@@ -24,5 +35,10 @@ def init():
         return(render_template("index.html", result=str(pred)))
     else:
         return(render_template("index.html", result="WAITING"))
+
+
+# In[2]:
+
+
 if __name__ == "__main__":
     app.run()
